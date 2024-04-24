@@ -1,4 +1,8 @@
 #include "systemcalls.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <fcntl.h>
 
 /**
  * @param cmd the command to execute with system()
@@ -17,7 +21,9 @@ bool do_system(const char *cmd)
  *   or false() if it returned a failure
 */
 
-    return true;
+//    return true;
+    int ret = system(cmd);
+    return ret == 0;
 }
 
 /**
@@ -59,6 +65,23 @@ bool do_exec(int count, ...)
  *
 */
 
+    pid_t pid = fork();
+    if (pid == 0) {
+        // Child process
+        execv(command[0], command);
+        // If execv returns, it means there was an error
+        perror("execv");
+        exit(EXIT_FAILURE);
+    } else if (pid > 0) {
+        // Parent process
+        int status;
+        waitpid(pid, &status, 0);
+        return WIFEXITED(status) && WEXITSTATUS(status) == 0;
+    } else {
+        // Fork failed
+        perror("fork");
+        return false;
+    }
     va_end(args);
 
     return true;
@@ -93,6 +116,31 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
  *
 */
 
+    pid_t pid = fork();
+    if (pid == 0) {
+        // Child process
+        int fd = open(outputfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        if (fd == -1) {
+            perror("open");
+            exit(EXIT_FAILURE);
+        }
+        dup2(fd, STDOUT_FILENO);  // Redirect stdout to the file
+        close(fd);
+
+        execv(command[0], command);
+        // If execv returns, it means there was an error
+        perror("execv");
+        exit(EXIT_FAILURE);
+    } else if (pid > 0) {
+        // Parent process
+        int status;
+        waitpid(pid, &status, 0);
+        return WIFEXITED(status) && WEXITSTATUS(status) == 0;
+    } else {
+        // Fork failed
+        perror("fork");
+        return false;
+    }
     va_end(args);
 
     return true;

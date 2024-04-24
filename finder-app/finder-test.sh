@@ -29,8 +29,8 @@ MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines a
 
 echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
 
-make writer clean
-make writer
+# make writer clean
+# make writer
 
 rm -rf "${WRITEDIR}"
 
