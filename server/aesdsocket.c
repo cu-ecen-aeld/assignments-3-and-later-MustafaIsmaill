@@ -15,18 +15,25 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
-#define PORT_STR "9000"
 #define	SOCKET_FAILURE -1
+#define PORT_STR "9000"
+// Passing backlog=0 to listen() below results the following error on QEMU:
+//   TCP: request_sock_TCP: Possible SYN flooding on port 9000.
+//   Dropping request.  Check SNMP counters.
+// Hence, possing 128, which matches the 'net.ipv4.tcp_max_syn_backlog' sysctl value.
+#define SOCKET_BACKLOG_SIZE 128
 
-int open_socket(const char * port_str);
-
-void handle_connection(const struct sockaddr_in *, int fd);
+// Global variables ("extern" linked from other files).
+int sock_fd = -1;
+int conn_fd = -1;
+bool daemonized = false;
 
 static bool d; // run as daemon.
 static FILE * tmp_file;
 
-int sock_fd = -1;
-int conn_fd = -1;
+int open_socket(const char * port_str);
+
+void handle_connection(const struct sockaddr_in *, int fd);
 
 void parse_args(int, char**);
 void daemonize();
@@ -65,10 +72,13 @@ int main(int argc, char** argv) {
 
     // Start "listening" (mark the socket as accepting connections).
     // https://pubs.opengroup.org/onlinepubs/009695399/functions/listen.html
-    if (listen(sock_fd, /* backlog */ 0) != 0) {
+    if (listen(sock_fd, SOCKET_BACKLOG_SIZE) != 0) {
         log_e("listen() failed (%d): %s\n", errno, strerror(errno));
         exit(SOCKET_FAILURE);
     }
+    #ifdef DEBUG
+    log_i("  listen()-ing on TCP:" PORT_STR " (with backlog=%d) now", SOCKET_BACKLOG_SIZE);
+    #endif
 
     // Wait for and accept connections.
     // https://man7.org/linux/man-pages/man2/accept.2.html
@@ -205,6 +215,7 @@ void daemonize() {
     if (pid == 0) {
         // Child / daemon process.
         log_i("aesdsocket daemon running...\n");
+        daemonized = true;
 
         // Reset file umask.
         umask(0);
@@ -230,6 +241,24 @@ void daemonize() {
     } else {
         // "Parent" process.
         log_i("aesdsocket daemon started (pid=%ld), exiting...\n", pid);
+
+        //  Writing pid of the daemon process to a file (on the best-effort basis).
+        FILE* pid_file = fopen(DAEMON_PID_FILE_PATH, "w"); // "w" creates or overwrites.
+        if (!pid_file) {
+            log_e("fopen(" DAEMON_PID_FILE_PATH ") failed (%d): %s\n",
+                    errno, strerror(errno));
+        } else {
+            if (fprintf(pid_file, "%d", pid) < 0) {
+                log_e("fprintf() to " DAEMON_PID_FILE_PATH " failed (%d): %s\n",
+                        errno, strerror(errno));
+            } else {
+                // Accoding to 'man close':
+                // If you need to be sure that the data is physically stored
+                // on the underlying disk, use fsync(2).
+                fflush(pid_file); // would be fsync() if we were using an FD
+            }
+            fclose(pid_file);
+        }
 
         // "Close" FDs for the socket and the tmp file explicitely,
         // although it's probably unnecessary.
