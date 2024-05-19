@@ -1,0 +1,412 @@
+==198== Memcheck, a memory error detector
+==198== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==198== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==198== Command: ./aesdsocket
+==198== Parent PID: 196
+==198== 
+--198-- 
+--198-- Valgrind options:
+--198--    --error-exitcode=1
+--198--    --leak-check=full
+--198--    --show-leak-kinds=all
+--198--    --track-origins=yes
+--198--    --errors-for-leak-kinds=definite
+--198--    --verbose
+--198--    --log-file=valgrind-out.txt
+--198-- Contents of /proc/version:
+--198--   Linux version 5.15.0-105-generic (buildd@lcy02-amd64-007) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #115-Ubuntu SMP Mon Apr 15 09:52:04 UTC 2024
+--198-- 
+--198-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--198-- Page sizes: currently 4096, max supported 4096
+--198-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--198-- Reading syms from /app/assignment-5-MustafaIsmaill/server/aesdsocket
+--198-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--198--   Considering /usr/lib/debug/.build-id/7a/e2aaae1a0e5b262df913ee0885582d2e327982.debug ..
+--198--   .. build-id is valid
+--198-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--198--    object doesn't have a symbol table
+--198--    object doesn't have a dynamic symbol table
+--198-- Scheduler: using generic scheduler lock implementation.
+--198-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==198== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-198-by-???-on-b0ccf8f69063
+==198== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-198-by-???-on-b0ccf8f69063
+==198== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-198-by-???-on-b0ccf8f69063
+==198== 
+==198== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==198== don't want to do, unless you know exactly what you're doing,
+==198== or are doing some strange experiment):
+==198==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=198 ...command...
+==198== 
+==198== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==198==   /path/to/gdb ./aesdsocket
+==198== and then give GDB the following command
+==198==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=198
+==198== --pid is optional if only one valgrind process is running
+==198== 
+--198-- REDIR: 0x4022e20 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--198-- REDIR: 0x4022bf0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--198-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--198--    object doesn't have a symbol table
+--198-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--198--    object doesn't have a symbol table
+==198== WARNING: new redirection conflicts with existing -- ignoring it
+--198--     old: 0x04022e20 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--198--     new: 0x04022e20 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--198-- REDIR: 0x401f600 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--198-- REDIR: 0x4023380 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--198-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--198--   Considering /usr/lib/debug/.build-id/ee/be5d5f4b608b8a53ec446b63981bba373ca0ca.debug ..
+--198--   .. build-id is valid
+--198-- REDIR: 0x48ee480 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed780 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee7b0 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed0a0 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed7e0 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48efc50 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x490ace0 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x490a820 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee5e0 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee410 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed710 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed150 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee540 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x490a7e0 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed670 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed230 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee800 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed1d0 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee950 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x490bf50 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x490a860 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed820 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed100 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ed630 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48f6bb0 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee850 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee3d0 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x490a930 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48edae0 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee750 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee6f0 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48efc90 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x48ee8a0 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--198-- REDIR: 0x49d6730 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--198-- REDIR: 0x48e80e0 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--198-- REDIR: 0x48e9b10 (libc.so.6:calloc) redirected to 0x483dce0 (calloc)
+--198-- REDIR: 0x49d6540 (libc.so.6:__strchrnul_avx2) redirected to 0x4843540 (strchrnul)
+--198-- REDIR: 0x49d6900 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--198-- REDIR: 0x48e86d0 (libc.so.6:free) redirected to 0x483c9d0 (free)
+--198-- REDIR: 0x49d9910 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
+--198-- REDIR: 0x48edfa0 (libc.so.6:__GI_strstr) redirected to 0x4843ca0 (__strstr_sse2)
+--198-- REDIR: 0x49d2ef0 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x48421e0 (bcmp)
+--198-- REDIR: 0x49d1df0 (libc.so.6:__strcmp_avx2) redirected to 0x483fed0 (strcmp)
+--198-- REDIR: 0x49d9d90 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x48428e0 (memset)
+--198-- REDIR: 0x49d98f0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--198-- REDIR: 0x48e8e80 (libc.so.6:realloc) redirected to 0x483df30 (realloc)
+==198== Syscall param socketcall.accept(addrlen_in) points to uninitialised byte(s)
+==198==    at 0x496E2F7: accept (accept.c:26)
+==198==    by 0x1096DB: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Address 0x1fff0004e4 is on thread 1's stack
+==198==  in frame #1, created by main (???:)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x109589: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Syscall param socketcall.accept(addrlen_out) points to uninitialised byte(s)
+==198==    at 0x496E2F7: accept (accept.c:26)
+==198==    by 0x1096DB: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Address 0x1fff0004e4 is on thread 1's stack
+==198==  in frame #1, created by main (???:)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x109589: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x48C5042: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109936: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+--198-- REDIR: 0x49d2760 (libc.so.6:__memchr_avx2) redirected to 0x4840050 (memchr)
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x48C5042: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Use of uninitialised value of size 8
+==198==    at 0x483EF46: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48C6D14: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Use of uninitialised value of size 8
+==198==    at 0x483EF54: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48C6D14: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x4843673: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x4843675: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x4843688: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x484368D: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x48436D8: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== Use of uninitialised value of size 8
+==198==    at 0x48436E0: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== HEAP SUMMARY:
+==198==     in use at exit: 1,072 bytes in 6 blocks
+==198==   total heap usage: 96 allocs, 90 frees, 318,257 bytes allocated
+==198== 
+==198== Searching for pointers to 6 not-freed blocks
+==198== Checked 69,640 bytes
+==198== 
+==198== 472 bytes in 1 blocks are still reachable in loss record 1 of 2
+==198==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48D092D: __fopen_internal (iofopen.c:65)
+==198==    by 0x48D092D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==198==    by 0x1095EA: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 600 bytes in 5 blocks are definitely lost in loss record 2 of 2
+==198==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48D1543: getdelim (iogetdelim.c:62)
+==198==    by 0x109E7A: copy_next_line (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109979: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== LEAK SUMMARY:
+==198==    definitely lost: 600 bytes in 5 blocks
+==198==    indirectly lost: 0 bytes in 0 blocks
+==198==      possibly lost: 0 bytes in 0 blocks
+==198==    still reachable: 472 bytes in 1 blocks
+==198==         suppressed: 0 bytes in 0 blocks
+==198== 
+==198== ERROR SUMMARY: 112 errors from 13 contexts (suppressed: 0 from 0)
+==198== 
+==198== 5 errors in context 1 of 13:
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x48C5042: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 5 errors in context 2 of 13:
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x48C5042: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109936: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 5 errors in context 3 of 13:
+==198== Syscall param socketcall.accept(addrlen_out) points to uninitialised byte(s)
+==198==    at 0x496E2F7: accept (accept.c:26)
+==198==    by 0x1096DB: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Address 0x1fff0004e4 is on thread 1's stack
+==198==  in frame #1, created by main (???:)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x109589: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 6 errors in context 4 of 13:
+==198== Syscall param socketcall.accept(addrlen_in) points to uninitialised byte(s)
+==198==    at 0x496E2F7: accept (accept.c:26)
+==198==    by 0x1096DB: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Address 0x1fff0004e4 is on thread 1's stack
+==198==  in frame #1, created by main (???:)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x109589: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 9 errors in context 5 of 13:
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x48436D8: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 9 errors in context 6 of 13:
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x484368D: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 9 errors in context 7 of 13:
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x4843688: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 9 errors in context 8 of 13:
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x4843675: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 9 errors in context 9 of 13:
+==198== Conditional jump or move depends on uninitialised value(s)
+==198==    at 0x4843673: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 9 errors in context 10 of 13:
+==198== Use of uninitialised value of size 8
+==198==    at 0x483EF46: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48C6D14: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 18 errors in context 11 of 13:
+==198== Use of uninitialised value of size 8
+==198==    at 0x48436E0: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48DD631: _IO_new_file_xsputn (fileops.c:1236)
+==198==    by 0x48DD631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==198==    by 0x48C50FB: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== 
+==198== 18 errors in context 12 of 13:
+==198== Use of uninitialised value of size 8
+==198==    at 0x483EF54: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==198==    by 0x48C6D14: __vfprintf_internal (vfprintf-internal.c:1688)
+==198==    by 0x109C7C: vlog (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109D3D: log_i (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x1099B3: handle_connection (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==    by 0x109738: main (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198==  Uninitialised value was created by a stack allocation
+==198==    at 0x1092D0: ??? (in /app/assignment-5-MustafaIsmaill/server/aesdsocket)
+==198== 
+==198== ERROR SUMMARY: 112 errors from 13 contexts (suppressed: 0 from 0)
